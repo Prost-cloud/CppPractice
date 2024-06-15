@@ -6,20 +6,6 @@
 
 typedef int (*getField)(Game, int, int);
 
-class Getter
-{
-public:
-    static int GetByRow(Game game, int i, int j)
-    {
-        return game.m_Field[i][j];
-    }
-
-    static int GetByColumn(Game game, int i, int j)
-    {
-        return game.m_Field[j][i];
-    }
-};
-
 Game::Game(int fieldSize)
 {
     m_FieldSize = fieldSize;
@@ -74,8 +60,8 @@ marks Game::CheckWinner()
         return marks::none;
     }
 
-    marks WinByRow = CheckLine(&Getter::GetByRow);
-    marks WinByColumn = CheckLine(&Getter::GetByColumn);
+    marks WinByRow = CheckLine(GetByRow);
+    marks WinByColumn = CheckLine(GetByColumn);
 };
 
 marks Game::CheckLine(getField get)

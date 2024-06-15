@@ -17,5 +17,4 @@ private:
     int m_MoveCount;
     marks CheckWinner();
     marks CheckLine(getField get);
-    friend class Getter;
 };
