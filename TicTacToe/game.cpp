@@ -4,6 +4,16 @@
 #include "marks.h"
 #include "game.h"
 
+static int GetByRow(Game game, int i, int j)
+{
+    return game.GetValueByPos(i, j);
+}
+
+static int GetByColumn(Game game, int i, int j)
+{
+    return game.GetValueByPos(j, i);
+}
+
 Game::Game(int fieldSize)
 {
     m_FieldSize = fieldSize;
@@ -16,16 +26,6 @@ Game::Game(int fieldSize)
     {
         m_Field[i] = new marks[fieldSize];
     }
-}
-
-static int GetByRow(Game game, int i, int j)
-{
-    return game.GetValueByPos(i, j);
-}
-
-static int GetByColumn(Game game, int i, int j)
-{
-    return game.GetValueByPos(j, i);
 }
 
 bool Game::MakeMove(int &x, int &y, marks &player)
