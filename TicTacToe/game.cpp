@@ -61,25 +61,49 @@ Game::~Game()
     delete[] m_Field;
 }
 
-marks Game::CheckLine(getField get)
+marks Game::CheckDiagonals() const
+{
+    int diag = 0, revDiag = 0;
+
+    for (int i = 0; i < m_FieldSize; i++)
+    {
+        diag += m_Field[i][i];
+        revDiag += m_Field[i][m_FieldSize - 1 - i];
+    }
+
+    if (std::abs(diag) == m_FieldSize)
+    {
+        return (diag > 0) ? marks::cross : marks::naught;
+    }
+
+    if (std::abs(revDiag) == m_FieldSize)
+    {
+        return (revDiag > 0) ? marks::cross : marks::naught;
+    }
+
+    return marks::none;
+}
+
+marks Game::CheckLine(getField get) const
 {
     for (int i = 0; i < m_FieldSize; ++i)
     {
-        int winner = 0;
+        int pointsInRow = 0;
         for (int j = 0; j < m_FieldSize; ++j)
         {
-            winner += get(*this, i, j);
+            pointsInRow += get(*this, i, j);
         }
-        if (std::abs(winner) == m_FieldSize)
+
+        if (std::abs(pointsInRow) == m_FieldSize)
         {
-            return (winner > 0) ? marks::cross : marks::naught;
+            return (pointsInRow > 0) ? marks::cross : marks::naught;
         }
     }
 
     return marks::none;
 }
 
-marks Game::CheckWinner()
+marks Game::CheckWinner() const
 {
     if (m_MoveCount < m_FieldSize)
     {
@@ -88,9 +112,9 @@ marks Game::CheckWinner()
 
     marks WinByRow = CheckLine(GetByRow);
     marks WinByColumn = CheckLine(GetByColumn);
+    marks WinByDiagonal = CheckDiagonals();
 
-    // return (marks)(WinByRow | WinByColumn);
-    return (marks)(WinByRow | WinByColumn);
+    return (marks)(WinByRow | WinByColumn | WinByDiagonal);
 }
 
 int Game::GetValueByPos(int i, int j) const

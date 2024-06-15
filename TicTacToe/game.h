@@ -1,14 +1,11 @@
 #pragma once
 #include "marks.h"
 
+class Game;
+typedef int (*getField)(Game, int, int);
 class Game
 {
 public:
-#ifndef typedefGetField
-#define typedefGetField
-    // int (*getField)(Game, int, int);
-    typedef int (*getField)(Game, int, int);
-#endif
     Game(int fieldSize);
     bool MakeMove(int &x, int &y, marks &player);
     bool IsGameEnd() const;
@@ -21,6 +18,7 @@ private:
     bool m_IsGameEnd;
     marks m_Winner;
     int m_MoveCount;
-    marks CheckWinner();
-    marks CheckLine(getField);
+    marks CheckWinner() const;
+    marks CheckLine(getField) const;
+    marks CheckDiagonals() const;
 };
