@@ -28,7 +28,7 @@ Game::Game(int fieldSize)
     }
 }
 
-bool Game::MakeMove(int &x, int &y, marks &player)
+bool Game::MakeMove(int &x, int &y, marks player)
 {
     if (x >= m_FieldSize && y >= m_FieldSize)
     {
@@ -120,4 +120,9 @@ marks Game::CheckWinner() const
 int Game::GetValueByPos(int i, int j) const
 {
     return m_Field[i][j];
+}
+
+int Game::GetFieldSize() const
+{
+    return m_FieldSize;
 }
