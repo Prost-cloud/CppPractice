@@ -15,7 +15,7 @@ char GetSignByValue(int value)
     }
 }
 
-void ShowField(const Game game)
+void ShowField(Game &game)
 {
     std::cout << "_________" << std::endl;
     int fieldSize = game.GetFieldSize();
