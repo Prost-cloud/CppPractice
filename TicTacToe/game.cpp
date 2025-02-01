@@ -25,10 +25,14 @@ Game::Game(int fieldSize)
     for (int i = 0; i < fieldSize; ++i)
     {
         m_Field[i] = new marks[fieldSize];
+        for (int j = 0; j < fieldSize; ++j)
+        {
+            m_Field[i][j] = marks::none;
+        }
     }
 }
 
-bool Game::MakeMove(int &x, int &y, marks player)
+bool Game::MakeMove(const int &x, const int &y, marks player)
 {
     if (x >= m_FieldSize && y >= m_FieldSize)
     {

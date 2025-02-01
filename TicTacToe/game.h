@@ -7,7 +7,7 @@ class Game
 {
 public:
     Game(int fieldSize);
-    bool MakeMove(int &x, int &y, marks player);
+    bool MakeMove(const int &x, const int &y, marks player);
     bool IsGameEnd() const;
     int GetValueByPos(int, int) const;
     int GetFieldSize() const;

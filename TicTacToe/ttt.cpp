@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include "game.h"
 
 char GetSignByValue(int value)
@@ -10,7 +11,7 @@ char GetSignByValue(int value)
     case -1:
         return 'o';
     default:
-        return '\0';
+        return '0';
     }
 }
 
@@ -24,7 +25,16 @@ void ShowField(const Game game)
         for (int j = 0; j < fieldSize; ++j)
         {
             char sign = GetSignByValue(game.GetValueByPos(i, j));
-            std::cout << (sign == '\0') ? (i * fieldSize + j + 1) : sign;
+            int writeInt = i * fieldSize + j + 1;
+            std::cout << std::setw(2);
+            if (sign == '0')
+            {
+                std::cout << writeInt;
+            }
+            else
+            {
+                std::cout << sign;
+            }
             std::cout << '|';
         }
         std::cout << '\n';
@@ -51,7 +61,7 @@ int main()
         int yMove = move % n;
         if (move > n || game.GetValueByPos(xMove, yMove) != 0)
         {
-            std::cout << "Incorrect move";
+            std::cout << "Incorrect move" << std::endl;
             continue;
         }
 
