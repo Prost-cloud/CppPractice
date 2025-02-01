@@ -14,6 +14,24 @@ static int GetByColumn(Game game, int i, int j)
     return game.GetValueByPos(j, i);
 }
 
+Game::Game(const Game &game)
+{
+    std::cout << "Copy constructor 1 " << std::endl;
+    m_FieldSize = game.m_FieldSize;
+    m_Field = new marks *[m_FieldSize];
+    m_IsGameEnd = game.m_IsGameEnd;
+    m_MoveCount = game.m_MoveCount;
+    m_Winner = game.m_Winner;
+    for (int i = 0; i < m_FieldSize; ++i)
+    {
+        m_Field[i] = new marks[m_FieldSize];
+        for (int j = 0; j < m_FieldSize; ++j)
+        {
+            m_Field[i][j] = game.m_Field[i][j];
+        }
+    }
+}
+
 Game::Game(int fieldSize)
 {
     m_FieldSize = fieldSize;
@@ -32,7 +50,7 @@ Game::Game(int fieldSize)
     }
 }
 
-bool Game::MakeMove(const int &x, const int &y, marks player)
+bool Game::MakeMove(int x, int y, marks player)
 {
     if (x >= m_FieldSize && y >= m_FieldSize)
     {

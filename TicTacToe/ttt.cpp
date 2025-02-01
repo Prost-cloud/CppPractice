@@ -37,8 +37,10 @@ void ShowField(const Game game)
             }
             std::cout << '|';
         }
+
         std::cout << std::endl;
     }
+
     std::cout << "_________" << std::endl;
 }
 
@@ -47,19 +49,19 @@ int main()
     int n, player = 1;
     std::cout << "Enter field size" << std::endl;
     std::cin >> n;
-
     Game game(n);
+
     while (!game.IsGameEnd())
     {
         ShowField(game);
-        std::cout << "Enter next move" << std::endl;
+        std::cout << "Enter next move " << std::endl;
 
         int move;
         std::cin >> move;
         --move;
         int xMove = move / n;
         int yMove = move % n;
-        if (move > n || game.GetValueByPos(xMove, yMove) != 0)
+        if (move > n * n || game.GetValueByPos(xMove, yMove) != 0)
         {
             std::cout << "Incorrect move" << std::endl;
             continue;

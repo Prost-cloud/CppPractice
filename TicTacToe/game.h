@@ -6,8 +6,9 @@ typedef int (*getField)(Game, int, int);
 class Game
 {
 public:
-    Game(int fieldSize);
-    bool MakeMove(const int &x, const int &y, marks player);
+    Game(int);
+    Game(const Game &);
+    bool MakeMove(int, int, marks);
     bool IsGameEnd() const;
     int GetValueByPos(int, int) const;
     int GetFieldSize() const;
