@@ -47,7 +47,8 @@ int main()
         int move;
         std::cin >> move;
         --move;
-        int xMove = move / n, yMove = move % n;
+        int xMove = move / n;
+        int yMove = move % n;
         if (move > n || game.GetValueByPos(xMove, yMove) != 0)
         {
             std::cout << "Incorrect move";
