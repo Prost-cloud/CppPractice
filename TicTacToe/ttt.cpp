@@ -17,7 +17,7 @@ char GetSignByValue(int value)
 
 void ShowField(const Game game)
 {
-    std::cout << "_________\n";
+    std::cout << "_________" << std::endl;
     int fieldSize = game.GetFieldSize();
     for (int i = 0; i < fieldSize; ++i)
     {
@@ -37,22 +37,22 @@ void ShowField(const Game game)
             }
             std::cout << '|';
         }
-        std::cout << '\n';
+        std::cout << std::endl;
     }
-    std::cout << "_________\n";
+    std::cout << "_________" << std::endl;
 }
 
 int main()
 {
     int n, player = 1;
-    std::cout << "Enter field size\n";
+    std::cout << "Enter field size" << std::endl;
     std::cin >> n;
 
     Game game(n);
     while (!game.IsGameEnd())
     {
         ShowField(game);
-        std::cout << "Enter next move\n";
+        std::cout << "Enter next move" << std::endl;
 
         int move;
         std::cin >> move;
