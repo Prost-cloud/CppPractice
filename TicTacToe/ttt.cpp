@@ -15,7 +15,7 @@ char GetSignByValue(int value)
     }
 }
 
-void ShowField(Game &game)
+void ShowField(TicTacToeGame::Game &game)
 {
     std::cout << "_________" << std::endl;
     int fieldSize = game.GetFieldSize();
@@ -46,10 +46,10 @@ void ShowField(Game &game)
 
 int main()
 {
-    int n, player = 1;
+    int fieldSize, player = 1;
     std::cout << "Enter field size" << std::endl;
-    std::cin >> n;
-    Game game(n);
+    std::cin >> fieldSize;
+    TicTacToeGame::Game game(fieldSize);
 
     while (!game.IsGameEnd())
     {
@@ -59,15 +59,15 @@ int main()
         int move;
         std::cin >> move;
         --move;
-        int xMove = move / n;
-        int yMove = move % n;
-        if (move > n * n || game.GetValueByPos(xMove, yMove) != 0)
+        int xMove = move / fieldSize;
+        int yMove = move % fieldSize;
+        if (move > fieldSize * fieldSize || game.GetValueByPos(xMove, yMove) != 0)
         {
             std::cout << "Incorrect move" << std::endl;
             continue;
         }
 
-        game.MakeMove(xMove, yMove, (marks)player);
+        game.MakeMove(xMove, yMove, (TicTacToeGame::marks)player);
         player *= -1;
     }
 

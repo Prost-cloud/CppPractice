@@ -1,8 +1,11 @@
 #pragma once
 
-enum marks
+namespace TicTacToeGame
 {
-    naught = -1,
-    none,
-    cross
-};
+    enum marks
+    {
+        naught = -1,
+        none,
+        cross
+    };
+}
