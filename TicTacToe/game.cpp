@@ -19,14 +19,9 @@ namespace TicTacToeGame
         }
     }
 
-    Game::Game(const Game &game)
+    Game::Game(const Game &game) : m_FieldSize(game.m_FieldSize), m_IsGameEnd(game.m_IsGameEnd), m_MoveCount(game.m_MoveCount), m_Winner(game.m_Winner)
     {
-        std::cout << "Copy constructor 1 " << std::endl;
-        m_FieldSize = game.m_FieldSize;
         m_Field = new marks *[m_FieldSize];
-        m_IsGameEnd = game.m_IsGameEnd;
-        m_MoveCount = game.m_MoveCount;
-        m_Winner = game.m_Winner;
         for (int i = 0; i < m_FieldSize; ++i)
         {
             m_Field[i] = new marks[m_FieldSize];
@@ -37,13 +32,9 @@ namespace TicTacToeGame
         }
     }
 
-    Game::Game(int fieldSize)
+    Game::Game(int fieldSize) : m_FieldSize(fieldSize), m_IsGameEnd(false), m_MoveCount(0), m_Winner(marks::none)
     {
-        m_FieldSize = fieldSize;
         m_Field = new marks *[fieldSize];
-        m_IsGameEnd = false;
-        m_MoveCount = 0;
-        m_Winner = marks::none;
 
         for (int i = 0; i < fieldSize; ++i)
         {
